@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Faustina!</title>
+    <!-- Importing Beautiful Handwriting Font (Great Vibes) and Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styling */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Quiz Container */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 85%;
+            width: 340px;
+            backdrop-filter: blur(5px);
+            z-index: 5;
+        }
+
+        h2 { 
+            color: #fb6f92; 
+            font-size: 1.3rem; 
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .btn {
+            background: #ffb3c1;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 179, 193, 0.3);
+            transition: 0.2s;
+        }
+        .btn:active { transform: scale(0.95); }
+
+        /* Dreamy Birthday Page */
+        #dreamy-page {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255,229,236,0.85), rgba(251,111,146,0.95));
+            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Photo Wall Background */
+        .photo-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+            opacity: 0.35; 
+            z-index: 1;
+        }
+        .photo-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Beautiful Handwriting Floating Text */
+        .bday-text {
+            position: relative;
+            z-index: 12;
+            color: #fff;
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            line-height: 4.5rem;
+            font-weight: 400;
+            margin: 0;
+            padding: 10px;
+            animation: float 3s ease-in-out infinite alternate, glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #fff, 0 0 20px #fb6f92; }
+            100% { text-shadow: 0 0 20px #fff, 0 0 40px #ff1493, 0 0 50px #ff1493; }
+        }
+
+        /* Dreamy Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ffb3c1;
+            font-size: 20px;
+            animation: fly 5s linear infinite;
+            z-index: 2;
+            bottom: -50px;
+        }
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- QUIZ SECTION -->
+    <div class="card" id="quiz-card">
+        <h2 id="question">Loading...</h2>
+        <div id="options-container"></div>
+    </div>
+
+    <!-- DREAMY BIRTHDAY SECTION -->
+    <div id="dreamy-page">
+        <!-- Background Photo Grid Natively Linked -->
+        <div class="photo-bg">
+            <img src="pic1.png" alt="Faustina 1">
+            <img src="pic2.png" alt="Faustina 2">
+            <img src="pic3.png" alt="Faustina 3">
+            <img src="pic4.png" alt="Faustina 4">
+            <img src="pic5.png" alt="Faustina 5">
+            <img src="pic6.png" alt="Faustina 6">
+        </div>
+        
+        <h1 class="bday-text">Happy Birthday<br>Faustina!</h1>
+        
+        <!-- Native Background Music -->
+        <audio id="bday-song" src="song.mp3" loop></audio>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "What is your absolute favorite food, Faustina? 🍛",
+                options: ["Chicken Fried Rice", "Beef Biriyani", "Mutton Mandi", "Shawarma"],
+                correct: "Beef Biriyani"
+            },
+            {
+                question: "If you could pack your bags and leave right now, where are you going? 🏔️",
+                options: ["Kochi", "Munnar", "Kashmir", "Goa"],
+                correct: "Kashmir"
+            },
+            {
+                question: "Which of these adorable little ones owns your heart? 🐱",
+                options: ["Puppies 🐶", "Cats 🐱", "Rabbits 🐰", "Birds 🦜"],
+                correct: "Cats 🐱"
+            },
+            {
+                question: "Which song is your absolute favorite to loop? 🎵",
+                options: ["Ee Kaattu", "Malare", "Darshana", "Lajjavathiye"],
+                correct: "Ee Kaattu"
+            },
+            {
+                question: "What is your go-to drink to freshen up? 🥤",
+                options: ["Coca Cola", "Sprite", "Seven Up", "Mango Juice"],
+                correct: "Sprite"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion() {
+            const currentQuiz = quizData[currentQuestionIndex];
+            document.getElementById("question").innerText = currentQuiz.question;
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = "";
+
+            currentQuiz.options.forEach(option => {
+                const button = document.createElement("button");
+                button.classList.add("btn");
+                button.innerText = option;
+                button.onclick = () => checkAnswer(option, currentQuiz.correct);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selected, correct) {
+            if (selected === correct) {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) {
+                    loadQuestion();
+                } else {
+                    revealBirthdayPage();
+                }
+            } else {
+                alert("Wrong answer! 🤫 Try again, I know you know yourself better!");
+            }
+        }
+
+        function revealBirthdayPage() {
+            document.getElementById("quiz-card").style.display = "none";
+            const dreamyPage = document.getElementById("dreamy-page");
+            dreamyPage.style.display = "flex";
+            
+            const audio = document.getElementById("bday-song");
+            audio.play().catch(error => console.log("Audio playback error:", error));
+
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+            document.getElementById("dreamy-page").appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
